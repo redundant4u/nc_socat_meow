@@ -1,0 +1,16 @@
+FROM python:3.6
+
+ARG PORT
+ARG PROBLEM
+
+ENV PORT $PORT
+ENV PROBLEM $PROBLEM
+
+RUN pip3 install flask
+
+WORKDIR /home/$PROBLEM
+
+COPY . /home/$PROBLEM
+
+CMD [ "python3", "goback.py" ]
+
