@@ -8,9 +8,6 @@ ENV PROBLEM $PROBLEM
 
 RUN pip3 install flask
 
-WORKDIR /home/$PROBLEM
+COPY ./problem/$PROBLEM /home/$PROBLEM
 
-COPY . /home/$PROBLEM
-
-CMD [ "python3", "goback.py" ]
-
+ENTRYPOINT python3 /home/${PROBLEM}/${PROBLEM}.py

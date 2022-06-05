@@ -22,7 +22,7 @@ RUN chmod +x /home/$PROBLEM/py.sh
 
 COPY ./problem/$PROBLEM /home/$PROBLEM
 
-COPY entrypoint.py.sh /entrypoint.sh
+COPY entrypoint.python.sh /entrypoint.sh
 
 ENTRYPOINT /entrypoint.sh
 

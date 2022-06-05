@@ -20,7 +20,7 @@ PYTHON_PROBLEMS=("basic_zkp")
 
 for PROBLEM in ${PYTHON_PROBLEMS[@]}
 do
-	docker build --build-arg PROBLEM=${PROBLEM} --build-arg PORT=${PORT} --build-arg USER=${USER} -t ${PROBLEM} -f Dockerfile.py .
+	docker build --build-arg PROBLEM=${PROBLEM} --build-arg PORT=${PORT} --build-arg USER=${USER} -t ${PROBLEM} -f Dockerfile.python .
 	docker run --name $PROBLEM -p $PORT:$PORT -i $PROBLEM &
 
 	let PORT=${PORT}+1
