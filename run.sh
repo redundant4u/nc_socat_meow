@@ -42,7 +42,7 @@ done
 
 ###########################################################
 
-PHP_PROBLEMS=("xmlparser" "keeper_bird" "obfuscation" "shop" "lord")
+PHP_PROBLEMS=("keeper_bird" "obfuscation" "shop" "lord")
 
 for PROBLEM in ${PHP_PROBLEMS[@]}
 do
@@ -50,5 +50,20 @@ do
 	docker run --name $PROBLEM -p $PORT:$PORT -i $PROBLEM &
 
 	let PORT=${PORT}+1
+
+done
+
+###########################################################
+
+OTHER_PROBLEMS=("xmlparser" "lighttpd")
+
+for PROBLEM in ${OTHER_PROBLEMS[@]}
+do
+	cd ./problem/$PROBLEM
+	docker build --build-arg PROBLEM=${PROBLEM} --build-arg PORT=${PORT} --build-arg USER=${USER} -t ${PROBLEM} -f Dockerfile .
+	docker run --name $PROBLEM -p $PORT:$PORT -i $PROBLEM &
+
+	let PORT=${PORT}+1
+	cd ../..
 
 done
